@@ -174,4 +174,51 @@ function gameObject() {
     }
 
     return rebounds;
+}function mostPointsScored() {
+    const game = gameObject();
+    let highestPoints = 0;
+    let topPlayer = "";
+
+    for (const team of Object.values(game)) {
+        for (const [playerName, player] of Object.entries(team.players)) {
+            if (player.points > highestPoints) {
+                highestPoints = player.points;
+                topPlayer = playerName;
+            }
+        }
+    }
+
+    return topPlayer;
+}function winningTeam() {
+    const game = gameObject();
+    let winningTeamName = "";
+    let highestScore = 0;
+
+    for (const team of Object.values(game)) {
+        let totalPoints = 0;
+
+        for (const player of Object.values(team.players)) {
+            totalPoints += player.points;
+        }
+
+        if (totalPoints > highestScore) {
+            highestScore = totalPoints;
+            winningTeamName = team.teamName;
+        }
+    }
+
+    return winningTeamName;
+}function playerWithLongestName() {
+    const game = gameObject();
+    let longestName = "";
+
+    for (const team of Object.values(game)) {
+        for (const playerName of Object.keys(team.players)) {
+            if (playerName.length > longestName.length) {
+                longestName = playerName;
+            }
+        }
+    }
+
+    return longestName;
 }
