@@ -221,4 +221,23 @@ function gameObject() {
     }
 
     return longestName;
+} function doesLongNameStealATon() {
+    const game = gameObject();
+    const longestName = playerWithLongestName();
+    let longestNameSteals = 0;
+    let highestSteals = 0;
+
+    for (const team of Object.values(game)) {
+        for (const [playerName, player] of Object.entries(team.players)) {
+            if (player.steals > highestSteals) {
+                highestSteals = player.steals;
+            }
+
+            if (playerName === longestName) {
+                longestNameSteals = player.steals;
+            }
+        }
+    }
+
+    return longestNameSteals === highestSteals;
 }
